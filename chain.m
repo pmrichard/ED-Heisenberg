@@ -1,6 +1,6 @@
 clear; close all; tic 
 
-global L;   L = 16;
+global L;   L = 2;
 global D;
 global du;
 global su;
@@ -10,6 +10,7 @@ D = 2^L-1;
 du = zeros(1,L+1);
 su = zeros(L+1,nchoosek(L,floor(L/2)));
 cycle = [(1:L-1),0];
+mineigs = zeros(1,L+1);
 
 genmag;
 for nu = 0 : L
@@ -32,6 +33,6 @@ for nu = 0 : L
     end
     mineigs(nu+1) = eigs(H,1,'sa');
 end
-ground = min(mineigs)
 
+mineigs
 toc
