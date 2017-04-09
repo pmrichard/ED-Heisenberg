@@ -32,5 +32,6 @@ for nu = 0 : L
     end
     mineigs(nu+1) = eigs(H,1,'sa');
 end
+ground = min(mineigs)
 
 toc
