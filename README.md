@@ -3,8 +3,11 @@ An exact diagonalization practice for spin-1/2 Heisenberg chain.
 
 
 chain.m     main program
+
 numup.m     count the number of 1 in a binary number
+
 search.m    bi-search
+
 genmag.m    generate basis via magnetization conversation
 
 
