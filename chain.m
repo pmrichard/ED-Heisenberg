@@ -1,6 +1,6 @@
 clear; close all; tic 
 
-global L;   L = 17;
+global L;   L = 14;
 global D;
 global du;
 global su;
