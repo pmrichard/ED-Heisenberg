@@ -1,6 +1,6 @@
 clear; close all; tic 
 
-global L;   L = 2;
+global L;   L = 14;
 global D;
 global du;
 global su;
@@ -19,19 +19,19 @@ for nu = 0 : L
     H = zeros(dspace,dspace);
     for in = 1 : du(nu+1)
         s = space(in);
-        for i = 0 : L-1
-            j = cycle(i+1);
-            if bitget(s,i+1) == bitget(s,j+1)
+        for t = 0 : L-1
+            j = cycle(t+1);
+            if bitget(s,t+1) == bitget(s,j+1)
                 H(in,in) = H(in,in)+1/4;
             else
                 H(in,in) = H(in,in)-1/4;
-                ss = bitxor(s,2^i+2^j);
+                ss = bitxor(s,2^t+2^j);
                 jn = search(nu,ss);
                 H(in,jn) = 1/2;
             end
         end
     end
-    mineigs(nu+1) = eigs(H,1,'sa');
+    mineigs(nu+1) = eigs(H,1,'sa')/L;
 end
 
 mineigs
