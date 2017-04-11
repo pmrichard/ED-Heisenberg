@@ -1,12 +1,9 @@
 clear; close all;
 
-Min = 4;
-Max = 16;
-
-Ns = zeros(1,Max/2-1);
-values = zeros(1,Max/2-1);
-
-for N = Min : 2 : Max
+global N;     N = 18;
+global ground;
+global du;
+global su;
 
 D = bitshift(1,N)-1;
 d = nchoosek(N,N/2);
@@ -32,23 +29,26 @@ for in = 1 : du
         else
             H(in,in) = H(in,in)-1/4;
             ss = bitxor(s,bitshift(1,s1)+bitshift(1,s2));
-            jn = searchin(ss,du,su);
+            jn = searchin(ss);
             H(in,jn) = 1/2;
         end
     end
 end
 
-Ns(N/2-1) = N;
-values(N/2-1) = eigs(H,1,'sa')/N;
+[ground,gvalue] = eigs(H,1,'sa');
 
+ns = 0:N;
+ees = zeros(1,N+1);
+for n = 0 : N/2
+    ees(n+1) = renyi(n);
+    ees(N+1-n) = ees(n+1);
 end
 
-plot(Ns,values);
-ylim([-0.5 -0.42]);
-xlim([Min Max]);
-ax = axis;
-maxy = max(values);
-hold on;
-plot([ax(1),ax(2)],[maxy,maxy],'r:');
-
+plot(ns,ees);
+title(strcat('N=',int2str(N)));
+ylim([0 1.5]);
+xlim([0,N]);
+ylabel('S_A^{(2)}');
+xlabel('L');
+legend('S_A^{(2)} - L');
 
