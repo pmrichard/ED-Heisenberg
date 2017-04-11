@@ -28,7 +28,9 @@ numup.m----------count the number of 1 in a binary number
 
 searchin.m-----------modified bi-search code
 
+renyi.m----------compute Renyi entanglement entropy of a subsystem.
 
-The length of the chain is N.
+
+The length of the chain is N. The program is now computing Renyi entanglement entropy.
 
 Next: several sysmetries.
